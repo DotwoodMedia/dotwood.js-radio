@@ -12,37 +12,35 @@ This framework makes creating a radio bot much easier! With this module you crea
 const DF = require("dmusicjs-framework");
 
 let Dmusic = new DF.Client({
-    token: "TOKEN", // Your bot token
-    radio: "http://21273.live.streamtheworld.com/TLPSTR09.mp3", // Radio Steam URL
-    channel: "ID" // Default voice channel id
+    radio: "https://21253.live.streamtheworld.com/RADIO538.mp3", // Radio Steam URL
+    channel: "ID", // Default voice channel id
+    client: client // Your bot client
 })
-
-Dmusic.login();
 ```
 
 3. Create radio events. Example:
 ``` 
-Dmusic.on("radioON", (channel) => {
+client.on("radioON", (channel) => {
     let embed = new Discord.MessageEmbed()
         .setDescription(`I successfully started the radio in ${channel}!`)
         .setColor("#00ff00")
-    Dmusic.channels.cache.get("CHANNEL ID").send(embed);
+    client.channels.cache.get("CHANNEL ID").send(embed);
 });
 
-Dmusic.on("radioOFF", () => {
+client.on("radioOFF", () => {
     let embed = new Discord.MessageEmbed()
         .setDescription(`The radio has stopped!`)
         .setColor("#ff0000")
-    Dmusic.channels.cache.get("CHANNEL ID").send(embed);
+    client.channels.cache.get("CHANNEL ID").send(embed);
 });
 
 ```
 Change CHANNEL ID to the id of a text channel in your server
 
 # 🤖 Other functions
-- Destroy bot:
+- Get listeners:
 ```
-Dmusic.Destroy()
+Dmusic.showListeners()
 ```
 
 - Adjust the volume
@@ -59,17 +57,23 @@ Dmusic.destroyRadio()
 ```
 Dmusic.play()
 ```
+
+- Restart radio:
+```
+Dmusic.restart()
+```
 # 📚 Example:
 ```
 const DF = require("dmusicjs-framework");
+const Discord = require("discord.js");
 
 let Dmusic = new DF.Client({
-    token: "TOKEN", // Your bot token
-    radio: "http://21273.live.streamtheworld.com/TLPSTR09.mp3", // Radio Steam URL
-    channel: "ID" // Default voice channel id
-});
+    radio: "https://21253.live.streamtheworld.com/RADIO538.mp3", // Radio Steam URL
+    channel: "ID", // Default voice channel id
+    client: client // Your bot client
+})
 
-Dmusic.on("message", message => {
+client.on("message", message => {
     if (message.author.bot || message.channel.type === "dm") return;
 
     var prefix = "!";
@@ -81,32 +85,52 @@ Dmusic.on("message", message => {
     // Commands
     if (command == `${prefix}volume`) {
         Dmusic.setVolume(arguments[0])
+        let embed = new Discord.MessageEmbed()
+            .setDescription(`Setted volume to ${arguments[0]}%`)
+            .setColor("#00ff00")
+        message.channel.send(embed)
     }
 
     if (command == `${prefix}destroy`) {
         Dmusic.destroyRadio()
+        let embed = new Discord.MessageEmbed()
+            .setDescription(`Stopping the radio...`)
+            .setColor("#00ff00")
+        message.channel.send(embed)
     }
 
     if (command == `${prefix}play`) {
-        Dmusic.play()
+        Dmusic.play();
+        let embed = new Discord.MessageEmbed()
+            .setDescription(`Starting the radio...`)
+            .setColor("#00ff00")
+        message.channel.send(embed)
+    }
+
+    if (command == `${prefix}restart`) {
+        Dmusic.restart();
+        let embed = new Discord.MessageEmbed()
+            .setDescription(`Restarting the radio...`)
+            .setColor("#00ff00")
+        message.channel.send(embed)
     }
 });
 
-Dmusic.on("radioON", (channel) => {
+client.on("radioON", (channel) => {
     let embed = new Discord.MessageEmbed()
         .setDescription(`I successfully started the radio in ${channel}!`)
         .setColor("#00ff00")
-    Dmusic.channels.cache.get("CHANNEL ID").send(embed);
+    client.channels.cache.get("CHANNEL ID").send(embed);
 });
 
-Dmusic.on("radioOFF", () => {
+client.on("radioOFF", () => {
     let embed = new Discord.MessageEmbed()
         .setDescription(`The radio has stopped!`)
         .setColor("#ff0000")
-    Dmusic.channels.cache.get("CHANNEL ID").send(embed);
+    client.channels.cache.get("CHANNEL ID").send(embed);
 });
 
-Dmusic.login();
+client.login(TOKEN);
 ```
 
 # 📑 License
