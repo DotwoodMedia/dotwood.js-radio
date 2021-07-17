@@ -42,7 +42,7 @@ class DFClient {
         channel.join().then(connection => {
             connection.voice.setSelfDeaf(true);
 
-            this.handlers.start(client, this.settings.radio, channel)
+            client.handlers.start(client, this.settings.radio, channel)
 
         }).catch(err => {
             console.log(err);

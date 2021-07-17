@@ -1,8 +1,8 @@
 # DmusicJS Framework
 This framework makes creating a radio bot much easier! With this module you create a basic radio bot for your server!
 
-<a href="https://www.npmjs.com/package/dmusicjs-framework"><img src="https://img.shields.io/npm/v/dmusicjs-framework.svg?maxAge=3600" alt="NPM version" /></a>
-<a href="https://www.npmjs.com/package/dmusicjs-framework"><img src="https://img.shields.io/npm/dt/dmusicjs-framework.svg?maxAge=3600" alt="NPM downloads" /></a>
+[![downloadsBadge](https://img.shields.io/npm/dt/dmusicjs-framework?style=for-the-badge)](https://npmjs.com/dmusicjs-framework)
+[![versionBadge](https://img.shields.io/npm/v/dmusicjs-framework?style=for-the-badge)](https://npmjs.com/dmusicjs-framework)
 
 # 💻 Installation
 
