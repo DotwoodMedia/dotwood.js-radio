@@ -18,7 +18,7 @@ let Dmusic = new DF.Client({
 })
 ```
 
-3. Create radio events. Example:
+3. Event examples:
 ``` 
 client.on("radioON", (channel) => {
     let embed = new Discord.MessageEmbed()
@@ -34,6 +34,12 @@ client.on("radioOFF", () => {
     client.channels.cache.get("CHANNEL ID").send(embed);
 });
 
+client.on("streamON", (channel) => {
+    let embed = new Discord.MessageEmbed()
+        .setDescription(`I successfully started the stream in ${channel}!`)
+        .setColor("#00ff00")
+    client.channels.cache.get("CHANNEL ID").send(embed);
+});
 ```
 Change CHANNEL ID to the id of a text channel in your server
 
@@ -55,20 +61,24 @@ Dmusic.destroyRadio()
 
 - Start radio:
 ```
-Dmusic.play()
+Dmusic.playRadio()
 ```
 
 - Restart radio:
 ```
 Dmusic.restart()
 ```
-# 📚 Example:
+- Start Youtube stream:
+```
+Dmusic.playStream()
+```
+# 📚 Example 1:
 ```
 const DF = require("dmusicjs-framework");
 const Discord = require("discord.js");
 
 let Dmusic = new DF.Client({
-    radio: "https://21253.live.streamtheworld.com/RADIO538.mp3", // Radio Steam URL
+    radio: "https://21253.live.streamtheworld.com/RADIO538.mp3", // Radio stream URL or Youtube stream URL
     channel: "ID", // Default voice channel id
     client: client // Your bot client
 })
@@ -100,7 +110,7 @@ client.on("message", message => {
     }
 
     if (command == `${prefix}play`) {
-        Dmusic.play();
+        Dmusic.playRadio();
         let embed = new Discord.MessageEmbed()
             .setDescription(`Starting the radio...`)
             .setColor("#00ff00")
@@ -119,6 +129,69 @@ client.on("message", message => {
 client.on("radioON", (channel) => {
     let embed = new Discord.MessageEmbed()
         .setDescription(`I successfully started the radio in ${channel}!`)
+        .setColor("#00ff00")
+    client.channels.cache.get("CHANNEL ID").send(embed);
+});
+
+client.on("radioOFF", () => {
+    let embed = new Discord.MessageEmbed()
+        .setDescription(`The radio has stopped!`)
+        .setColor("#ff0000")
+    client.channels.cache.get("CHANNEL ID").send(embed);
+});
+
+client.login(TOKEN);
+```
+
+# 📚 Example 2:
+```
+const DF = require("dmusicjs-framework");
+const Discord = require("discord.js");
+
+let Dmusic = new DF.Client({
+    radio: "https://www.youtube.com/watch?v=aowKgscmTOw", // Radio stream URL or Youtube stream URL
+    channel: "ID", // Default voice channel id
+    client: client // Your bot client
+})
+
+client.on("message", message => {
+    if (message.author.bot || message.channel.type === "dm") return;
+
+    var prefix = "!";
+
+    var messageArray = message.content.split(" ");
+    var command = messageArray[0];
+    var arguments = messageArray.slice(1);
+
+    // Commands
+    if (command == `${prefix}volume`) {
+        Dmusic.setVolume(arguments[0])
+        let embed = new Discord.MessageEmbed()
+            .setDescription(`Setted volume to ${arguments[0]}%`)
+            .setColor("#00ff00")
+        message.channel.send(embed)
+    }
+
+    if (command == `${prefix}destroy`) {
+        Dmusic.destroyRadio()
+        let embed = new Discord.MessageEmbed()
+            .setDescription(`Stopping the stream...`)
+            .setColor("#00ff00")
+        message.channel.send(embed)
+    }
+
+    if (command == `${prefix}play`) {
+        Dmusic.playStream();
+        let embed = new Discord.MessageEmbed()
+            .setDescription(`Starting the stream...`)
+            .setColor("#00ff00")
+        message.channel.send(embed)
+    }
+});
+
+client.on("streamON", (channel) => {
+    let embed = new Discord.MessageEmbed()
+        .setDescription(`I successfully started the stream in ${channel}!`)
         .setColor("#00ff00")
     client.channels.cache.get("CHANNEL ID").send(embed);
 });
