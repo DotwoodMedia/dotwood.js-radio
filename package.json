@@ -1,6 +1,6 @@
 {
-  "name": "dmusicjs-framework",
-  "version": "1.4.0",
+  "name": "dotwood.js-radio",
+  "version": "1.4.1",
   "description": "This framework makes creating a radio bot much easier! With this module you create a basic radio bot for your server!",
   "main": "index.js",
   "scripts": {
@@ -8,20 +8,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DotwoodMedia/dmusicjs-framework.git"
+    "url": "git+https://github.com/DotwoodMedia/dotwoodjs-radio"
   },
   "keywords": [
     "Music",
     "Radio",
-    "Dmusicjs",
+    "Dotwood.js",
     "Framework"
   ],
   "author": "Dotwood Media",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/DotwoodMedia/dmusicjs-framework/issues"
+    "url": "https://github.com/DotwoodMedia/dotwoodjs-radio/issues"
   },
-  "homepage": "https://github.com/DotwoodMedia/dmusicjs-framework#readme",
+  "homepage": "https://github.com/DotwoodMedia/dotwoodjs-radio#readme",
   "dependencies": {
     "@discordjs/opus": "^0.5.0",
     "discord.js": "^12.5.3",

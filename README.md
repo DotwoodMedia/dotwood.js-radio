@@ -1,17 +1,17 @@
-# DmusicJS Framework
+# Dotwood.js Radio
 This framework makes creating a radio bot much easier! With this module you create a basic radio bot for your server!
 
-[![downloadsBadge](https://img.shields.io/npm/dt/dmusicjs-framework?style=for-the-badge)](https://npmjs.com/dmusicjs-framework)
-[![versionBadge](https://img.shields.io/npm/v/dmusicjs-framework?style=for-the-badge)](https://npmjs.com/dmusicjs-framework)
+[![downloadsBadge](https://img.shields.io/npm/dt/dotwood.js-radio?style=for-the-badge)](https://npmjs.com/dotwood.js-radio)
+[![versionBadge](https://img.shields.io/npm/v/dotwood.js-radio?style=for-the-badge)](https://npmjs.com/dotwood.js-radio)
 
 # 💻 Installation
 
-1. Install module: `npm install dmusicjs-framework`
+1. Install module: `npm i dotwood.js-radio`
 2. Make a index.js file. Example:
 ```
-const DF = require("dmusicjs-framework");
+const DJR = require("dotwood.js-radio");
 
-let Dmusic = new DF.Client({
+let Radio = new DJR.Client({
     radio: "https://21253.live.streamtheworld.com/RADIO538.mp3", // Radio Steam URL
     channel: "ID", // Default voice channel id
     client: client // Your bot client
@@ -46,38 +46,38 @@ Change CHANNEL ID to the id of a text channel in your server
 # 🤖 Other functions
 - Get listeners:
 ```
-Dmusic.showListeners()
+Radio.showListeners()
 ```
 
 - Adjust the volume
 ```
-Dmusic.setVolume([VALUE])
+Radio.setVolume([VALUE])
 ```
 
 - Destroy radio:
 ```
-Dmusic.destroyRadio()
+Radio.destroyRadio()
 ```
 
 - Start radio:
 ```
-Dmusic.playRadio()
+Radio.playRadio()
 ```
 
 - Restart radio:
 ```
-Dmusic.restart()
+Radio.restart()
 ```
 - Start Youtube stream:
 ```
-Dmusic.playStream()
+Radio.playStream()
 ```
 # 📚 Example 1:
 ```
-const DF = require("dmusicjs-framework");
+const DJR = require("dotwood.js-radio");
 const Discord = require("discord.js");
 
-let Dmusic = new DF.Client({
+let Radio = new DJR.Client({
     radio: "https://21253.live.streamtheworld.com/RADIO538.mp3", // Radio stream URL or Youtube stream URL
     channel: "ID", // Default voice channel id
     client: client // Your bot client
@@ -94,7 +94,7 @@ client.on("message", message => {
 
     // Commands
     if (command == `${prefix}volume`) {
-        Dmusic.setVolume(arguments[0])
+        Radio.setVolume(arguments[0])
         let embed = new Discord.MessageEmbed()
             .setDescription(`Setted volume to ${arguments[0]}%`)
             .setColor("#00ff00")
@@ -102,7 +102,7 @@ client.on("message", message => {
     }
 
     if (command == `${prefix}destroy`) {
-        Dmusic.destroyRadio()
+        Radio.destroyRadio()
         let embed = new Discord.MessageEmbed()
             .setDescription(`Stopping the radio...`)
             .setColor("#00ff00")
@@ -110,7 +110,7 @@ client.on("message", message => {
     }
 
     if (command == `${prefix}play`) {
-        Dmusic.playRadio();
+        Radio.playRadio();
         let embed = new Discord.MessageEmbed()
             .setDescription(`Starting the radio...`)
             .setColor("#00ff00")
@@ -118,7 +118,7 @@ client.on("message", message => {
     }
 
     if (command == `${prefix}restart`) {
-        Dmusic.restart();
+        Radio.restart();
         let embed = new Discord.MessageEmbed()
             .setDescription(`Restarting the radio...`)
             .setColor("#00ff00")
@@ -145,10 +145,10 @@ client.login(TOKEN);
 
 # 📚 Example 2:
 ```
-const DF = require("dmusicjs-framework");
+const DJR = require("dotwood.js-radio");
 const Discord = require("discord.js");
 
-let Dmusic = new DF.Client({
+let Radio = new DJR.Client({
     radio: "https://www.youtube.com/watch?v=aowKgscmTOw", // Radio stream URL or Youtube stream URL
     channel: "ID", // Default voice channel id
     client: client // Your bot client
@@ -165,7 +165,7 @@ client.on("message", message => {
 
     // Commands
     if (command == `${prefix}volume`) {
-        Dmusic.setVolume(arguments[0])
+        Radio.setVolume(arguments[0])
         let embed = new Discord.MessageEmbed()
             .setDescription(`Setted volume to ${arguments[0]}%`)
             .setColor("#00ff00")
@@ -173,7 +173,7 @@ client.on("message", message => {
     }
 
     if (command == `${prefix}destroy`) {
-        Dmusic.destroyRadio()
+        Radio.destroyRadio()
         let embed = new Discord.MessageEmbed()
             .setDescription(`Stopping the stream...`)
             .setColor("#00ff00")
@@ -181,7 +181,7 @@ client.on("message", message => {
     }
 
     if (command == `${prefix}play`) {
-        Dmusic.playStream();
+        Radio.playStream();
         let embed = new Discord.MessageEmbed()
             .setDescription(`Starting the stream...`)
             .setColor("#00ff00")
@@ -207,4 +207,4 @@ client.login(TOKEN);
 ```
 
 # 📑 License
-This project has an <a href="https://github.com/DotwoodMedia/dmusicjs-framework/blob/main/LICENSE">Apache 2.0</a> license
+This project has an <a href="https://github.com/DotwoodMedia/dotwood.js-radio/blob/main/LICENSE">Apache 2.0</a> license
