@@ -1,3 +1,6 @@
+| :exclamation:  We are currently working on a new better version!  :exclamation: |
+|-----------------------------------------|
+
 # Dotwood.js Radio
 This framework makes creating a radio bot much easier! With this module you create a basic radio bot for your server!
 
